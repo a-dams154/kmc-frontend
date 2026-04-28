@@ -46,7 +46,7 @@ const AddScore = () => {
         eventType: formData.eventType.toLowerCase()
       });
       toast.success('Score added successfully');
-      navigate('/'); 
+      navigate('/');
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to add score');
     } finally {
@@ -70,26 +70,26 @@ const AddScore = () => {
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group full-width">
             <label>Student Name <span className="required">*</span></label>
-            <input 
-              type="text" 
-              name="studentName" 
+            <input
+              type="text"
+              name="studentName"
               placeholder="Enter student name"
-              value={formData.studentName} 
-              onChange={handleInputChange} 
-              required 
+              value={formData.studentName}
+              onChange={handleInputChange}
+              required
             />
           </div>
 
           <div className="form-group full-width">
             <label>Event Name <span className="required">*</span></label>
-            <input 
-              type="text" 
-              name="eventName" 
+            <input
+              type="text"
+              name="eventName"
               list="eventNamesList"
               placeholder="Select or type event name"
-              value={formData.eventName} 
-              onChange={handleInputChange} 
-              required 
+              value={formData.eventName}
+              onChange={handleInputChange}
+              required
             />
             <datalist id="eventNamesList">
               {EVENT_NAMES.map(name => (
@@ -109,10 +109,10 @@ const AddScore = () => {
 
             <div className="form-group">
               <label>Category <span className="required">*</span></label>
-              <select 
-                name="category" 
-                value={formData.category} 
-                onChange={handleInputChange} 
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
                 required
               >
                 <option value="" disabled>Select Category</option>
@@ -130,12 +130,12 @@ const AddScore = () => {
           <div className="form-row">
             <div className="form-group">
               <label>Points <span className="required">*</span></label>
-              <input 
-                type="number" 
-                name="point" 
-                value={formData.point} 
-                onChange={handleInputChange} 
-                required 
+              <input
+                type="number"
+                name="point"
+                value={formData.point}
+                onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -143,10 +143,9 @@ const AddScore = () => {
               <label>Prize <span className="required">*</span></label>
               <select name="prize" value={formData.prize} onChange={handleInputChange} required>
                 <option value="">Select Prize</option>
-                <option value="Gold">Gold</option>
-                <option value="Silver">Silver</option>
-                <option value="Bronze">Bronze</option>
-                <option value="Participation">Participation</option>
+                <option value="First">First</option>
+                <option value="Second">Second</option>
+                <option value="Third">Third</option>
               </select>
             </div>
           </div>
@@ -164,12 +163,12 @@ const AddScore = () => {
 
             <div className="form-group">
               <label>Event Date <span className="required">*</span></label>
-              <input 
-                type="date" 
-                name="eventDate" 
-                value={formData.eventDate} 
-                onChange={handleInputChange} 
-                required 
+              <input
+                type="date"
+                name="eventDate"
+                value={formData.eventDate}
+                onChange={handleInputChange}
+                required
               />
             </div>
           </div>

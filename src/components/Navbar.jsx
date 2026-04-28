@@ -90,21 +90,21 @@ const Navbar = () => {
         </button>
 
         <div className="relative">
-          <div className="profile-section" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <div className="profile-avatar">
-              <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=e2e8f0&color=64748b" alt="Avatar" />
-            </div>
-            <div className="profile-info hidden sm:flex">
-              <span className="name">{user ? user.email.split('@')[0] : 'Sarah Johnson'}</span>
-              <span className="role">Administrator</span>
-            </div>
-            <ChevronDown size={14} className={`text-text-muted transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-          </div>
+          {user ? (
+            <>
+              <div className="profile-section" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                <div className="profile-avatar">
+                  <img src={`https://ui-avatars.com/api/?name=${user.email.split('@')[0]}&background=e2e8f0&color=64748b`} alt="Avatar" />
+                </div>
+                <div className="profile-info hidden sm:flex">
+                  <span className="name">{user.email.split('@')[0]}</span>
+                  <span className="role">Administrator</span>
+                </div>
+                <ChevronDown size={14} className={`text-text-muted transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </div>
 
-          {isDropdownOpen && (
-            <div className="dropdown-content nav-dropdown" style={{ display: 'block' }}>
-              {user ? (
-                <>
+              {isDropdownOpen && (
+                <div className="dropdown-content nav-dropdown" style={{ display: 'block' }}>
                   <Link to="/register" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
                     <UserPlus size={18} />
                     Create User
@@ -122,20 +122,14 @@ const Navbar = () => {
                     <LogOut size={18} />
                     Logout
                   </button>
-                </>
-              ) : (
-                <>
-                  <Link to="/login" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
-                    <LogIn size={18} />
-                    Login
-                  </Link>
-                  <Link to="/register" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
-                    <UserPlus size={18} />
-                    Sign Up
-                  </Link>
-                </>
+                </div>
               )}
-            </div>
+            </>
+          ) : (
+            <Link to="/login" className="btn-primary">
+              <LogIn size={18} />
+              Login
+            </Link>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 import {
   Trophy, Users, Calendar, TrendingUp, Search, Filter,
-  ChevronRight, Crown, Medal, Plus, List, LogOut
+  ChevronRight, Crown, Medal, Plus, List, LogOut, LogIn
 } from 'lucide-react';
 import './Dashboard.css';
 //import poster from '../../../frontend/public/poster.jpg';
@@ -128,7 +128,7 @@ const Dashboard = () => {
           <h1 className="dashboard-title">Arts Program Dashboard</h1>
           <p className="dashboard-subtitle">Event Scores & Analytics</p>
         </div>
-        {user && (
+        {user ? (
           <div className="header-actions" style={{ display: 'flex', gap: '1rem' }}>
             <button
               className="list-scores-btn-fancy"
@@ -154,6 +154,16 @@ const Dashboard = () => {
             >
               <LogOut size={20} />
               <span>Logout</span>
+            </button>
+          </div>
+        ) : (
+          <div className="header-actions" style={{ display: 'flex', gap: '1rem' }}>
+            <button
+              className="add-score-btn-fancy"
+              onClick={() => navigate('/login')}
+            >
+              <LogIn size={20} />
+              <span>Login</span>
             </button>
           </div>
         )}

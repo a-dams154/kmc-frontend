@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import './Dashboard.css'; // ensure styles like dashboard-title and filters-bar work
 
 const EVENT_NAMES = [
-  "CARNATIC MUSIC- MALE/ FEMALE", "LIGHT MUSIC- MALE/FEMALE", "MAPPILAPAATTU- MALE/FEMALE", "WESTERN SOLO- MALE/FEMALE", "GHAZAL- MALE/FEMALE", "WHISTLING A SONG", "STRING- EASTERN/WESTERN", "WIND- EASTERN/WESTERN", "PERCUSSION- EASTERN/WESTERN", "KEYBOARD", "DUET", "GROUP SONG EASTERN", "NADANPAATTU", "JUGALBANDHI", "UNPLUGGED", "EASTERN BAND", "WESTERN BAND", "DUFFMUTT", "VATTAPATU", "VANCHIPAATTU", "ARABANAMUTTU", "BHARATHANATYAM", "KUCHIPUDI", "MOHINIYATTAM", "KERALANADANAM", "FOLK DANCE", "SOLO DANCE-MALE/FEMALE", "SYNC DANCE -MALE/FEMALE", "DUET DANCE", "SPOT DANCE- MALE/FEMALE", "OPPANA", "MARGAMKALI", "THIRUVATHIRA", "VIDEO CHOREOGRAPHY", "NOSTALGIA", "CHOREONIGHT", "POORAKKALI", "OTTANTHULLAL", "CHAKYARKOOTH", "KOLKALI", "PENCIL DRAWING", "WATER COLOURING", "OIL PAINTING", "CARTOONING", "CARICATURE", "POSTER MAKING", "COLLAGE", "SOAP CARVING", "FRUIT/ VEGETABLE CARVING", "CLAY MODELING", "ORIGAMI", "EMBROIDERY", "FACE PAINTING", "JAM SKETCHING", "RANGOLI", "MEHANDI", "DIGITAL PAINTING", "INSTALLATION", "DIGITAL POSTER", "MONOACT", "ACTING ON SPOT", "MIMICRY", "FANCY DRESS", "KADHAPRASANGAM", "DUMB CHARADES - E/M", "MIME", "MEDI SKIT", "MOVIE SPOOF", "SONG SPOOF", "ADZAP", "FILMI FUNDA", "POTPOURI", "STREETPLAY", "DRAMA", "RECITATION - E/M H", "ELOCUTION - E/M/H", "EXTEMPORE - E/M/H", "DEBATE - E/M", "AM - E/M", "PROS & CONS - E/M", "MOCK THE PRESS", "TOM, DICK & HARRY", "Mr. & Ms. SP", "DECLAMATION", "AKSHARASLOKAM", "ESSAY WRITING - E/ M/ H/S/A", "STORY WRITING - E/M/H/S/A", "VERSIFICATION - E/M/H/S/A", "CREATIVE WRITING - E/M/H/S/A", "QUIZ", "FASHION SHOW", "PHOTOGRAPHY", "TRAILER MAKING", "SHORT FILM"
+  "CARNATIC MUSIC- MALE/ FEMALE", "LIGHT MUSIC", "MAPPILAPAATTU", "WESTERN SOLO", "GHAZAL", "WHISTLING A SONG", "STRING- EASTERN/WESTERN", "WIND- EASTERN/WESTERN", "PERCUSSION- EASTERN/WESTERN", "KEYBOARD", "DUET", "GROUP SONG EASTERN", "NADANPAATTU", "JUGALBANDHI", "UNPLUGGED", "EASTERN BAND", "WESTERN BAND", "DUFFMUTT", "VATTAPATU", "VANCHIPAATTU", "ARABANAMUTTU", "BHARATHANATYAM", "KUCHIPUDI", "MOHINIYATTAM", "KERALANADANAM", "FOLK DANCE", "SOLO DANCE", "SYNC DANCE", "DUET DANCE", "SPOT DANCE", "OPPANA", "MARGAMKALI", "THIRUVATHIRA", "VIDEO CHOREOGRAPHY", "NOSTALGIA", "CHOREONIGHT", "POORAKKALI", "OTTANTHULLAL", "CHAKYARKOOTH", "KOLKALI", "PENCIL DRAWING", "WATER COLOURING", "OIL PAINTING", "CARTOONING", "CARICATURE", "POSTER MAKING", "COLLAGE", "SOAP CARVING", "FRUIT/ VEGETABLE CARVING", "CLAY MODELING", "ORIGAMI", "EMBROIDERY", "FACE PAINTING", "JAM SKETCHING", "RANGOLI", "MEHANDI", "DIGITAL PAINTING", "INSTALLATION", "DIGITAL POSTER", "MONOACT", "ACTING ON SPOT", "MIMICRY", "FANCY DRESS", "KADHAPRASANGAM", "DUMB CHARADES - E/M", "MIME", "MEDI SKIT", "MOVIE SPOOF", "SONG SPOOF", "ADZAP", "FILMI FUNDA", "POTPOURI", "STREETPLAY", "DRAMA", "RECITATION - E/M H", "ELOCUTION - E/M/H", "EXTEMPORE - E/M/H", "DEBATE - E/M", "AM - E/M", "PROS & CONS - E/M", "MOCK THE PRESS", "TOM, DICK & HARRY", "Mr. & Ms. SP", "DECLAMATION", "AKSHARASLOKAM", "ESSAY WRITING - E/ M/ H/S/A", "STORY WRITING - E/M/H/S/A", "VERSIFICATION - E/M/H/S/A", "CREATIVE WRITING - E/M/H/S/A", "QUIZ", "FASHION SHOW", "PHOTOGRAPHY", "TRAILER MAKING", "SHORT FILM"
 ];
 
 const ManageScores = () => {
@@ -16,10 +16,11 @@ const ManageScores = () => {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     studentName: '',
     eventName: '',
+    gender: 'Male',
     eventType: 'individual',
     point: '',
     prize: '',
@@ -52,6 +53,7 @@ const ManageScores = () => {
     setFormData({
       studentName: '',
       eventName: '',
+      gender: 'Male',
       eventType: 'individual',
       point: '',
       prize: '',
@@ -84,6 +86,7 @@ const ManageScores = () => {
     setFormData({
       studentName: score.studentName,
       eventName: score.eventName,
+      gender: score.gender || 'Male',
       eventType: score.eventType,
       point: score.point,
       prize: score.prize,
@@ -106,7 +109,7 @@ const ManageScores = () => {
     }
   };
 
-  const filteredScores = scores.filter(s => 
+  const filteredScores = scores.filter(s =>
     s.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     s.eventName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     s.batch.toLowerCase().includes(searchTerm.toLowerCase())
@@ -126,15 +129,15 @@ const ManageScores = () => {
       <div className="filters-bar" style={{ marginBottom: '2rem' }}>
         <div className="search-container">
           <Search size={18} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search students, events, or batches..." 
+          <input
+            type="text"
+            placeholder="Search students, events, or batches..."
             className="input-field search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button 
+        <button
           onClick={() => navigate('/add-score')}
           className="btn-primary"
           style={{ height: '44px', padding: '0 1.5rem', whiteSpace: 'nowrap' }}
@@ -150,6 +153,7 @@ const ManageScores = () => {
             <thead>
               <tr>
                 <th>Student</th>
+                <th>Gender</th>
                 <th>Event</th>
                 <th>Type</th>
                 <th>Batch</th>
@@ -163,6 +167,7 @@ const ManageScores = () => {
               {filteredScores.map((score) => (
                 <tr key={score._id}>
                   <td style={{ fontWeight: 600 }}>{score.studentName}</td>
+                  <td style={{ color: 'var(--text-muted)' }}>{score.gender}</td>
                   <td style={{ color: 'var(--text-muted)' }}>{score.eventName}</td>
                   <td>
                     <span className={`type-icon ${score.eventType === 'individual' ? 'type-i' : 'type-g'}`}>
@@ -172,11 +177,10 @@ const ManageScores = () => {
                   <td>{score.batch}</td>
                   <td style={{ fontFamily: 'monospace', color: 'var(--primary)', fontWeight: 'bold' }}>{score.point}</td>
                   <td>
-                    <span className={`prize-badge ${
-                      score.prize.toLowerCase() === 'gold' ? 'prize-gold' : 
-                      score.prize.toLowerCase() === 'silver' ? 'prize-silver' : 
-                      score.prize.toLowerCase() === 'bronze' ? 'prize-bronze' : 'prize-part'
-                    }`}>
+                    <span className={`prize-badge ${score.prize.toLowerCase() === 'gold' ? 'prize-gold' :
+                      score.prize.toLowerCase() === 'silver' ? 'prize-silver' :
+                        score.prize.toLowerCase() === 'bronze' ? 'prize-bronze' : 'prize-part'
+                      }`}>
                       {score.prize}
                     </span>
                   </td>
@@ -207,15 +211,15 @@ const ManageScores = () => {
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)' }}>
           <div className="glass-card" style={{ width: '100%', maxWidth: '42rem', maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative', boxShadow: 'var(--shadow-lg)' }}>
-            <button 
+            <button
               onClick={() => setShowModal(false)}
               style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '0.5rem', borderRadius: '9999px', border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)' }}
             >
               <X size={24} />
             </button>
-            
+
             <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: 'var(--text-main)' }}>{editingId ? 'Edit Score' : 'Add New Score'}</h2>
-            
+
             <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Student Name</label>
@@ -229,6 +233,14 @@ const ManageScores = () => {
                     <option key={name} value={name} />
                   ))}
                 </datalist>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Gender</label>
+                <select name="gender" className="input-field" value={formData.gender} onChange={handleInputChange} required>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Event Type</label>
@@ -267,7 +279,7 @@ const ManageScores = () => {
                 <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Event Date</label>
                 <input type="date" name="eventDate" className="input-field" value={formData.eventDate} onChange={handleInputChange} required />
               </div>
-              
+
               <div style={{ gridColumn: '1 / -1', paddingTop: '1rem' }}>
                 <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '1rem' }}>
                   <Save size={20} />

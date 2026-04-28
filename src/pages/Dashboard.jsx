@@ -121,6 +121,8 @@ const Dashboard = () => {
     </div>
   );
 
+  console.log("selectedEvent", selectedEvent)
+
   return (
     <div className="dashboard-container">
       <header className="dashboard-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -190,7 +192,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {rankings.overall.slice(0, 3).map((row, index) => (
+              {rankings.overall.map((row, index) => (
                 <tr key={row.batch} style={{ backgroundColor: index === 0 ? '#1f1a0a' : index === 1 ? '#0f172a' : '#1a0f05' }}>
                   <td>
                     <div className="rank-badge">
@@ -266,13 +268,14 @@ const Dashboard = () => {
                   <tr>
                     <th>Rank</th>
                     <th>Student Name</th>
+                    <th>Gender</th>
                     <th>Batch</th>
                     <th>Points</th>
                     <th>Prize</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {selectedEvent.topThree.map((winner, idx) => (
+                  {selectedEvent.students.map((winner, idx) => (
                     <tr key={idx}>
                       <td>
                         <div className="winner-rank">
@@ -282,6 +285,7 @@ const Dashboard = () => {
                         </div>
                       </td>
                       <td className="font-semibold">{winner.studentName}</td>
+                      <td>{winner.gender}</td>
                       <td>{winner.batch}</td>
                       <td className="font-bold text-primary">{winner.point}</td>
                       <td>

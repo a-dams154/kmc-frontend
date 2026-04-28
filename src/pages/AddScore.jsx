@@ -15,6 +15,7 @@ const AddScore = () => {
   const [formData, setFormData] = useState({
     studentName: '',
     eventName: '',
+    gender: '',
     eventType: 'Individual',
     category: '',
     point: 0,
@@ -100,13 +101,25 @@ const AddScore = () => {
 
           <div className="form-row">
             <div className="form-group">
+              <label>Gender <span className="required">*</span></label>
+              <select name="gender" value={formData.gender} onChange={handleInputChange} required>
+                <option value="" disabled>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div className="form-group">
               <label>Event Type <span className="required">*</span></label>
               <select name="eventType" value={formData.eventType} onChange={handleInputChange}>
                 <option value="Individual">Individual</option>
                 <option value="Group">Group</option>
               </select>
             </div>
+          </div>
 
+          <div className="form-row">
             <div className="form-group">
               <label>Category <span className="required">*</span></label>
               <select
@@ -125,9 +138,7 @@ const AddScore = () => {
                 <option value="Others">Others</option>
               </select>
             </div>
-          </div>
 
-          <div className="form-row">
             <div className="form-group">
               <label>Points <span className="required">*</span></label>
               <input
@@ -138,7 +149,9 @@ const AddScore = () => {
                 required
               />
             </div>
+          </div>
 
+          <div className="form-row">
             <div className="form-group">
               <label>Prize <span className="required">*</span></label>
               <select name="prize" value={formData.prize} onChange={handleInputChange} required>

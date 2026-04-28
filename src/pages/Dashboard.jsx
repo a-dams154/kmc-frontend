@@ -302,7 +302,7 @@ const Dashboard = () => {
       </div>
 
       {/* Filters */}
-      <div className="filters-bar">
+      {/* <div className="filters-bar">
         <div className="search-container">
           <Search size={18} className="search-icon" />
           <input
@@ -329,7 +329,7 @@ const Dashboard = () => {
           <option>Individual</option>
           <option>Group</option>
         </select>
-      </div>
+      </div> */}
 
       {/* Charts Grid */}
       <div className="charts-grid">

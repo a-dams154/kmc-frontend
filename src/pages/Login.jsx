@@ -43,13 +43,13 @@ const Login = () => {
             <div className="form-group">
               <label>Email Address</label>
               <div className="input-with-icon">
-                <Mail size={20} className="input-icon" />
-                <input 
-                  type="email" 
-                  placeholder="admin@university.edu" 
+
+                <input
+                  type="email"
+                  placeholder="admin@university.edu"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -57,21 +57,21 @@ const Login = () => {
             <div className="form-group">
               <label>Password</label>
               <div className="input-with-icon">
-                <Lock size={20} className="input-icon" />
-                <input 
-                  type={showPassword ? 'text' : 'password'} 
-                  placeholder="Enter your password" 
+
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required 
+                  required
                 />
               </div>
             </div>
 
             <div className="form-options">
               <label className="checkbox-container">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   checked={showPassword}
                   onChange={() => setShowPassword(!showPassword)}
                 />

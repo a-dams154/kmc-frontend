@@ -155,9 +155,12 @@ const AddScore = () => {
               <label>Batch <span className="required">*</span></label>
               <select name="batch" value={formData.batch} onChange={handleInputChange} required>
                 <option value="">Select Batch</option>
-                <option value="2024-A">2024-A</option>
-                <option value="2024-B">2024-B</option>
-                <option value="2023-C">2023-C</option>
+                <option value="65">65</option>
+                <option value="66">66</option>
+                <option value="67">67</option>
+                <option value="68">68</option>
+                <option value="69">69</option>
+                <option value="pg">pg</option>
               </select>
             </div>
 

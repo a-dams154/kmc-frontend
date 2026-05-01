@@ -15,7 +15,6 @@ const AddScore = () => {
   const [formData, setFormData] = useState({
     studentName: '',
     eventName: '',
-    gender: '',
     eventType: 'Individual',
     category: '',
     point: 0,
@@ -100,15 +99,7 @@ const AddScore = () => {
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label>Gender <span className="required">*</span></label>
-              <select name="gender" value={formData.gender} onChange={handleInputChange} required>
-                <option value="" disabled>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+
 
             <div className="form-group">
               <label>Event Type <span className="required">*</span></label>

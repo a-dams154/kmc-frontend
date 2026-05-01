@@ -268,7 +268,6 @@ const Dashboard = () => {
                   <tr>
                     <th>Rank</th>
                     <th>Student Name</th>
-                    <th>Gender</th>
                     <th>Batch</th>
                     <th>Points</th>
                     <th>Prize</th>
@@ -285,7 +284,6 @@ const Dashboard = () => {
                         </div>
                       </td>
                       <td className="font-semibold">{winner.studentName}</td>
-                      <td>{winner.gender}</td>
                       <td>{winner.batch}</td>
                       <td className="font-bold text-primary">{winner.point}</td>
                       <td>

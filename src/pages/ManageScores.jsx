@@ -20,7 +20,6 @@ const ManageScores = () => {
   const [formData, setFormData] = useState({
     studentName: '',
     eventName: '',
-    gender: 'Male',
     eventType: 'individual',
     point: '',
     prize: '',
@@ -53,7 +52,6 @@ const ManageScores = () => {
     setFormData({
       studentName: '',
       eventName: '',
-      gender: 'Male',
       eventType: 'individual',
       point: '',
       prize: '',
@@ -86,7 +84,6 @@ const ManageScores = () => {
     setFormData({
       studentName: score.studentName,
       eventName: score.eventName,
-      gender: score.gender || 'Male',
       eventType: score.eventType,
       point: score.point,
       prize: score.prize,
@@ -153,7 +150,6 @@ const ManageScores = () => {
             <thead>
               <tr>
                 <th>Student</th>
-                <th>Gender</th>
                 <th>Event</th>
                 <th>Type</th>
                 <th>Batch</th>
@@ -167,7 +163,6 @@ const ManageScores = () => {
               {filteredScores.map((score) => (
                 <tr key={score._id}>
                   <td style={{ fontWeight: 600 }}>{score.studentName}</td>
-                  <td style={{ color: 'var(--text-muted)' }}>{score.gender}</td>
                   <td style={{ color: 'var(--text-muted)' }}>{score.eventName}</td>
                   <td>
                     <span className={`type-icon ${score.eventType === 'individual' ? 'type-i' : 'type-g'}`}>
@@ -233,14 +228,6 @@ const ManageScores = () => {
                     <option key={name} value={name} />
                   ))}
                 </datalist>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Gender</label>
-                <select name="gender" className="input-field" value={formData.gender} onChange={handleInputChange} required>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>Event Type</label>
